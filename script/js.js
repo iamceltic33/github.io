@@ -5,10 +5,6 @@ $(document).ready( function(){
       img.src = val;
       $(img).on('load', function(){
          images[index] = `url("${$(this).attr('src')}")`;
-         console.log(images[index])
-         $('.header').css({
-            backgroundImage: images[index],
-            backgroundSize: 'cover'});
       })
       return img
    });
