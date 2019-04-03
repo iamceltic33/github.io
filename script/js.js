@@ -5,13 +5,17 @@ $(document).ready( function(){
       img.src = val;
       $(img).on('load', function(){
          images[index] = `url("${$(this).attr('src')}")`;
+         console.log($(this).attr('src'))
+         console.log(images)
       })
       return img
    });
-   images = images.map(function(){
+   images = images.map(function(val, index){
+      console.log(val)
+      if (index == 0) return `url(${val})`;
       return 'none'
    })
-   console.log(loadedImages);
+   console.log(images);
    let slider = new Slider(images, $('.header'), $('.switchers'));
    slider.changeBG();
    slider.slideShowStart(5000);
@@ -24,7 +28,8 @@ $(document).ready( function(){
       e.preventDefault();
       $('nav').slideUp(300)
    })
-   $(window).on('mousemove', fillGradOnMove)
+   $(window).on('mousemove', fillGradOnMove);
+   //$(window).on('resize')
 })
 class Slider {
    constructor(images, target, switchers) {
@@ -62,6 +67,6 @@ class Slider {
 function fillGradOnMove(e){
    let x = e.pageX - $('.menu').offset().left,
       y = e.pageY - $('.menu').offset().top;
-      $('.menu').css('background', `radial-gradient(circle at ${100*x/$(this).width()}% ${100*y/$(this).height()}%, rgba(0,0,0,0.95) 0%, rgba(84,84,84,0.99) 100%)`)
+      $('.menu').css('background', `radial-gradient(circle at ${100*x/$('.menu').width()}% ${100*y/$('.menu').height()}%, rgba(84,84,84,0.99) 0%, rgba(0,0,0,0.95) 100%)`)
 
 }
