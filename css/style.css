@@ -35,7 +35,11 @@
    background-image: url(../images/menu\ icon.png);
    margin-right: 50px;
 }
-
+.logo {
+   border-radius: 10px;
+   background-color: rgba(255, 255, 255, 0.1);
+   padding: 0 5px;
+}
 .logo img {
    width: 300px;
 }
@@ -43,15 +47,16 @@
 nav {
    position: absolute;
    height: 800px;
-   background-color: #000;
    top: -50px;
    left: 50%;
-   padding-top: 100px;
    transform: translateX(-50%)
 }
 
 nav .menu {
-   padding-top: 100px;
+   background-color: #000;
+   width: 100%;
+   height: 100%;
+   padding-top: 200px;
    list-style-type: none;
 }
 .menu li a{
