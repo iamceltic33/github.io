@@ -12,7 +12,7 @@ $(document).ready( function(){
       if (index == 0) return `url(${val})`;
       return 'none'
    })
-   let slider = new Slider(images, $('.header'), $('.switchers'), 1500);
+   let slider = new Slider(images, $('.header'), $('.switchers'), 5000);
    slider.changeBG();
    slider.slideShowStart();
 
