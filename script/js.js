@@ -12,9 +12,9 @@ $(document).ready( function(){
       if (index == 0) return `url(${val})`;
       return 'none'
    })
-   let slider = new Slider(images, $('.header'), $('.switchers'));
+   let slider = new Slider(images, $('.header'), $('.switchers'), 1500);
    slider.changeBG();
-   slider.slideShowStart(5000);
+   slider.slideShowStart();
 
    $('nav').hide();
    $('.menu-btn-show').on('click', function(){
@@ -27,21 +27,26 @@ $(document).ready( function(){
    $(window).on('mousemove', fillGradOnMove);
 })
 class Slider {
-   constructor(images, target, switchers) {
+   constructor(images, target, switchers, interval = 5000) {
       this.images = images;
       this.target = target;
       this.counter = 0;
       this.timerID = null;
       this.switchers = switchers;
+      this.interval = interval;
       for (let i = 0; i < this.images.length; i++){
          let li = $('<li></li>');
+         li.on('click', ()=>{
+            
+            this.changeSlide(i);
+         })
          this.switchers.append(li);
       }
       this.switchers.children().first().addClass('active');
    };
    counterUp(){
       this.counter++;
-      if (this.counter == this.images.length){
+      if (this.counter >= this.images.length){
          this.counter = 0;
       }
    };
@@ -50,12 +55,25 @@ class Slider {
       this.target.css({
          backgroundImage: url,
          backgroundSize: 'cover'});
-      this.counterUp();
       this.switchers.children('.active').removeClass('active');
       this.switchers.children().eq(this.counter).addClass('active')
+      this.counterUp();
    };
    slideShowStart(interval){
-      this.timerID = setInterval(this.changeBG.bind(this), interval)
+      if (interval) {
+         this.interval = interval;
+      }
+      this.timerID = setInterval(this.changeBG.bind(this), this.interval)
+   }
+   slideShowStop(){
+      clearInterval(this.timerID);
+   }
+   changeSlide(index){
+      console.log(index);
+      this.counter = index;
+      this.changeBG();
+      this.slideShowStop();
+      this.slideShowStart();
    }
 }
 
