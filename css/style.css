@@ -79,6 +79,9 @@ nav .menu {
    border-radius: 50%;
    background-color: #000;
 }
+.switchers li:hover {
+   cursor: pointer;
+}
 .switchers li.active {
    background-color: #fff;
 }
