@@ -19,12 +19,43 @@ $(document).ready( function(){
    $('nav').hide();
    $('.menu-btn-show').on('click', function(){
       $('nav').slideDown(500)
+      $('.middle-header').fadeOut(500)
    })
    $('.menu-btn-close').on('click', function(e){
       e.preventDefault();
       $('nav').slideUp(300)
+      $('.middle-header').fadeIn(300)
    })
    $(window).on('mousemove', fillGradOnMove);
+   $(window).on('scroll', function(){
+      scroll = $(window).scrollTop();
+      $('.middle-header').css('top', (0 - scroll*0.5)+'px');
+      $('.about blockquote').css('top', (0 - scroll*0.1)+'px');
+   })
+   $('.about').on('mousemove', function(e){
+      if ((e.offsetX + e.offsetY)%10 == 0 && e.target == $('.about').get(0)){
+         let transition = Math.floor(Math.random()*8000+500),
+         size = Math.floor(Math.random()*100)+'px';
+         let d = $('<div></div>').css({
+            width: size,
+            height: size,
+            position: 'absolute',
+            transition: 'top ' + transition+'ms',
+            top: e.offsetY + 'px',
+            left: e.offsetX + 'px',
+            border: '1px solid rgba(171,171,171,0.5)',
+            borderRadius: '50%',
+            transform: 'translate(-50%, -50%)',
+            background: ' radial-gradient(circle at center, rgba(255,255,255,1) 0%, rgba(171,171,171,0.5) 100%)'
+         }).appendTo(this)
+         setTimeout(function(){
+            d.css('top', 0)
+          }, 100)
+         setTimeout(function(){
+            d.remove()
+          }, transition)
+      }
+   })
 })
 class Slider {
    constructor(images, target, switchers, interval = 5000) {
