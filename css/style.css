@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Jura');
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Jura:300,400,500,600,700&subset=cyrillic');
 *, body {
    margin: 0;
    padding: 0;
@@ -64,6 +64,27 @@ nav .menu {
    background-image: url(../images/menu\ close.png);
    margin-right: 50px;
 }
+
+.middle-header {
+   position: relative;
+   align-self: flex-end;
+   width: 680px;
+   height: 210px;
+   border-radius: 50px;
+   padding: 20px;
+   background-color: rgba(255, 255, 255, 0.1)
+}
+
+.big-text {
+   font-size: 150px;
+   font-weight: 300;
+   color: rgba(255, 255, 255, 0.800);
+   text-align: right;
+}
+.small-text {
+   color: rgba(255,255,255);
+   text-align: right;
+}
 .switchers {
    display: flex;
    justify-content: center;
@@ -85,6 +106,56 @@ nav .menu {
 .switchers li.active {
    background-color: #fff;
 }
+
+.about {
+   height: 1000px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   position: relative;
+}
+blockquote {
+   margin: 0;
+   background: white;
+   border-top: 5px solid #EAF9F9;
+   border-bottom: 5px solid #EAF9F9;
+   color: #3A3C55;
+   padding: 30px 30px 30px 90px;
+   position: relative;
+   font-weight: 300;
+   z-index: 10;
+   }
+   blockquote:before {
+   content: "\201C";
+   font-family: serif;
+   position: absolute;
+   left: 20px;
+   top: 20px;
+   color: white;
+   background: #FB6652;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   font-size: 50px;
+   line-height: 1.35;
+   text-align: center;
+   }
+   blockquote p {
+   font-family: 'Montserrat', serif;
+   margin: 0 0 16px;
+   font-size: 22px;
+   letter-spacing: .05em;
+   line-height: 1.4;
+   }
+   blockquote cite {
+   font-family: 'Montserrat', serif;
+   font-style: normal;
+   }
+   .deathspeaks {
+      font-family: 'Montserrat', serif;
+      font-variant: small-caps; 
+   }
+
 @media screen and (min-width: 1240px){
    .header {
       height: 1000px;
