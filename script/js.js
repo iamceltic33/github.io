@@ -28,9 +28,15 @@ $(document).ready( function(){
    })
    $(window).on('mousemove', fillGradOnMove);
    $(window).on('scroll', function(){
-      scroll = $(window).scrollTop();
+      let scroll = $(window).scrollTop();
       $('.middle-header').css('top', (0 - scroll*0.5)+'px');
       $('.about blockquote').css('top', (0 - scroll*0.1)+'px');
+
+      if (scroll > $('header').height() || $(window).height()> $('header').height() ){
+         $('.message-icon').fadeIn(200)
+      } else {
+         $('.message-icon').fadeOut(200)
+      }
    })
    $('.about').on('mousemove', function(e){
       if ((e.offsetX + e.offsetY)%10 == 0 && e.target == $('.about').get(0)){
@@ -55,6 +61,26 @@ $(document).ready( function(){
             d.remove()
           }, transition)
       }
+   })
+   $('.message-icon').on('click', function(){
+      $(this).css('right', '-20rem');
+      $('.message-input').addClass('active');
+   })
+   $('#message-close').on('click', function(e){
+      e.preventDefault()
+      $('.message-input').removeClass('active');
+      $('.message-icon').css('right', '5%');
+   })
+   $('.message-input button').on('click', function(){
+      $.get('https://api.telegram.org/bot891789180:AAF0jhI2GX5QsEAt8pi54zMTiUs0zc9zfSo/sendMessage', {
+         chat_id: '240125885',
+         text: $('#message').val()
+         }, function(data, status){
+            if (data.ok){
+               $('#message-close').trigger('click')
+            }
+         }
+      )
    })
 })
 class Slider {
