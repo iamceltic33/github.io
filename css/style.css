@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat|Jura:300,400,500,600,700&subset=cyrillic');
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Jura:400,500,600,700&subset=cyrillic');
+html {
+   font-size: 10px;
+}
 *, body {
    margin: 0;
    padding: 0;
@@ -40,11 +43,12 @@ nav .menu {
    height: 100%;
    padding-top: 200px;
    list-style-type: none;
+   box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.1);
 }
 .menu li a{
    text-decoration: none;
    text-transform: uppercase;
-   font-size: 50px;
+   font-size: 5rem;
    color: #626262;
    display: block;
    height: 60px;
@@ -76,7 +80,7 @@ nav .menu {
 }
 
 .big-text {
-   font-size: 150px;
+   font-size: 15rem;
    font-weight: 300;
    color: rgba(255, 255, 255, 0.800);
    text-align: right;
@@ -84,6 +88,7 @@ nav .menu {
 .small-text {
    color: rgba(255,255,255);
    text-align: right;
+   font-size: 1.5rem;
 }
 .switchers {
    display: flex;
@@ -113,6 +118,7 @@ nav .menu {
    flex-direction: column;
    justify-content: center;
    position: relative;
+   overflow: hidden;
 }
 blockquote {
    margin: 0;
@@ -136,14 +142,14 @@ blockquote {
    width: 50px;
    height: 50px;
    border-radius: 50%;
-   font-size: 50px;
+   font-size: 5rem;
    line-height: 1.35;
    text-align: center;
    }
    blockquote p {
    font-family: 'Montserrat', serif;
    margin: 0 0 16px;
-   font-size: 22px;
+   font-size: 2.2rem;
    letter-spacing: .05em;
    line-height: 1.4;
    }
@@ -155,6 +161,88 @@ blockquote {
       font-family: 'Montserrat', serif;
       font-variant: small-caps; 
    }
+
+.message-icon {
+   position: fixed;
+   bottom: 5%;
+   right: 5%;
+   display: none;
+   background-color: #538736;
+   border-radius: 50%;
+   border: 10px solid #538736;
+   transition: all 0.3s;
+   width: 5rem;
+   height: 5rem;
+}
+.message-icon img {
+   position: relative;
+   top: 3px;
+   width: 5rem;
+   height: 5rem;
+   animation: wiggle 10s linear 5s infinite;
+}
+.message-icon:hover {
+   cursor: pointer;
+   box-shadow: 0 0 5px 5px #538736;
+}
+.message-input {
+   position: fixed;
+   right: -25rem;
+   bottom: 5%;
+   width: 20rem;
+   height: 15rem;
+   background-color: #538736;
+   padding: 1rem;
+   border-radius: 1.5rem;
+   animation: halo 5s ease 1s infinite;
+   transition: right 0.3s ease;
+}
+.message-input .title {
+   color: white;
+   text-align: center;
+   font-size: 2rem;
+}
+#message-close {
+   display: block;
+   position: absolute;
+   right: 5%;
+   top: 2%;
+   font-size: 1.5rem;
+   text-decoration: none;
+   color: white;
+}
+#message {
+   width: calc(100% - 1rem);
+   display: block;
+   margin: 1.5rem auto;
+   font-size: 2rem;
+   padding: 0.1rem;
+   font-weight: bold;
+}
+.message-input button {
+   background: linear-gradient(to bottom, #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%);
+   background-position: 0 0;
+   width: 10rem;
+   height: 5rem;
+   display: block;
+   margin: 0 auto;
+   border-radius: 1rem;
+   border: none;
+   outline: none;
+   transition: background-position 0.5s;
+}
+.message-input button:hover {
+   background-position: 100px 100px;
+   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.message-input button:active {
+   box-shadow: 0 12px 16px 0 rgb(4, 107, 43);
+}
+.message-input.active {
+   right: 5%;
+   bottom: 5%;
+}
 
 @media screen and (min-width: 1240px){
    .header {
@@ -186,7 +274,7 @@ blockquote {
    .menu li a{
       text-decoration: none;
       text-transform: uppercase;
-      font-size: 50px;
+      font-size: 5rem;
       color: #626262;
       display: block;
       height: 60px;
@@ -197,10 +285,38 @@ blockquote {
       padding: 20px;
    }
    .menu-btn-close, .menu-btn-show {
-      margin-right: 0px;
+      margin-right: 1rem;
    }
    .header {
       height: 100vh;
       background-position: center;
    }
+   .middle-header {
+      align-self: center;
+      box-sizing: border-box;
+      max-width: 100%;
+      
+   }
+   .big-text {
+      font-size: 7.5rem;
+   }
+}
+
+@keyframes wiggle {
+   0%  { transform: rotate(0deg) }
+   1% { transform: rotate(-30deg) }
+   2% { transform: rotate(30deg) }
+   3% { transform: rotate(-25deg) }
+   4% { transform: rotate(25deg) }
+   5% { transform: rotate(-20deg) }
+   6% { transform: rotate(20deg) }
+   7% { transform: rotate(0deg) }
+
+   100% { transform: rotate(0deg) }
+}
+
+@keyframes halo {
+   0%   {box-shadow: 0px 0px 20px 2px #4f7e35ce}
+   50% {box-shadow: 0px 0px 20px 20px #4f7e35ce}
+   100%   {box-shadow: 0px 0px 20px 2px #4f7e35ce}
 }
